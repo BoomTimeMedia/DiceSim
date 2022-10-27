@@ -1,6 +1,17 @@
 extends KinematicBody2D
-signal collide_tile
+signal player_dead
+
 var speed = 200
+
+
+
+var health = 100
+var maxHealth = 100
+var currDefence = 0
+var DiceOutcome = 1
+
+func _ready():
+	$"/root/GlobalScript".connect("player_hit", self, "_hit")
 
 
 func _physics_process(delta):
@@ -17,4 +28,13 @@ func _physics_process(delta):
 	velocity = velocity.normalized() * speed
 		
 	velocity = move_and_slide(velocity)
-	
+
+func _hit(damage, cause):
+	var total_defence = currDefence + DiceOutcome
+	health = health - (damage -total_defence)
+	print("Damage Cause: ", cause, " Current Health: ", health, "/", maxHealth)
+	print("Gross Dmg Done: ", damage, " Total_Defence ", total_defence, " Net Dmg: ", (total_defence-damage))
+	if(health <= 0):
+	   health = 0
+	   emit_signal("player_dead")
+

@@ -26,6 +26,7 @@ func player_tile_interact(player):
 			match int(TileSetCoords.x):
 				TileSetIDs.LAVA:
 					player.speed = 50
+					$"/root/GlobalScript".emit_signal("player_hit", 1, "lava")
 				TileSetIDs.WATER: 
 					player.speed = 250
 				TileSetIDs.SAND:
