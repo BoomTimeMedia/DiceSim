@@ -15,4 +15,4 @@ func _ready():
 #func _process(delta):
 #	pass
 func _process(delta):
-	$World3D.player_tile_interact($Player)
+	pass

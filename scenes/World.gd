@@ -1,4 +1,4 @@
-extends TileMap
+extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -13,21 +13,6 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func player_tile_interact(player):
-	var cellPos = local_to_map(player.position)
-	var cell_tile_id = get_cellv(cellPos)
-	print(cell_tile_id)
-	match cell_tile_id:
-		-1:
-			player.speed = 200
-		0:
-			var TileSetCoords = get_cell_autotile_coord(cellPos.x, cellPos.y)
-			print("TileX: ", TileSetCoords.x, " TileY: ", TileSetCoords.y)
-			match int(TileSetCoords.x):
-				TileSetIDs.LAVA:
-					player.speed = 50
-					$"/root/GlobalScript".emit_signal("player_hit", 1, "lava")
-				TileSetIDs.WATER: 
-					player.speed = 250
-				TileSetIDs.SAND:
-					player.speed = 100
+func get_tile_at_coords(coords : Vector2):
+	pass
+	

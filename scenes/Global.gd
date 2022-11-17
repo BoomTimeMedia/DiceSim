@@ -1,9 +1,6 @@
 extends Node
 
 
-signal player_hit(damage, cause)
-
-
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
