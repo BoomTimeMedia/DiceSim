@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 signal player_dead
 
 var speed = 200
@@ -11,7 +11,7 @@ var currDefence = 0
 var DiceOutcome = 1
 
 func _ready():
-	$"/root/GlobalScript".connect("player_hit", self, "_hit")
+	$"/root/GlobalScript".connect("player_hit",Callable(self,"_hit"))
 
 
 func _physics_process(delta):
@@ -27,7 +27,9 @@ func _physics_process(delta):
 		
 	velocity = velocity.normalized() * speed
 		
-	velocity = move_and_slide(velocity)
+	set_velocity(velocity)
+	move_and_slide()
+	velocity = velocity
 
 func _hit(damage, cause):
 	var total_defence = currDefence + DiceOutcome

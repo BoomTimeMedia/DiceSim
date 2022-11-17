@@ -14,7 +14,7 @@ func _ready():
 #	pass
 
 func player_tile_interact(player):
-	var cellPos = world_to_map(player.position)
+	var cellPos = local_to_map(player.position)
 	var cell_tile_id = get_cellv(cellPos)
 	print(cell_tile_id)
 	match cell_tile_id:
